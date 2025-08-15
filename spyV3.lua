@@ -234,7 +234,7 @@ local CodeBox = Create("Frame",{Parent = RightPanel,BackgroundColor3 = Color3.ne
 local ScrollingFrame = Create("ScrollingFrame",{Parent = RightPanel,Active = true,BackgroundColor3 = Color3.new(1, 1, 1),BackgroundTransparency = 1,Position = UDim2.new(0, 0, 0.5, 0),Size = UDim2.new(1, 0, 0.5, -9),CanvasSize = UDim2.new(0, 0, 0, 0),ScrollBarThickness = 4})
 local UIGridLayout = Create("UIGridLayout",{Parent = ScrollingFrame,HorizontalAlignment = Enum.HorizontalAlignment.Center,SortOrder = Enum.SortOrder.LayoutOrder,CellPadding = UDim2.new(0, 0, 0, 0),CellSize = UDim2.new(0, 94, 0, 27)})
 local TopBar = Create("Frame",{Parent = Background,BackgroundColor3 = Color3.fromRGB(37, 35, 38),BorderSizePixel = 0,Size = UDim2.new(0, 450, 0, 19)})
-local Simple = Create("TextButton",{Parent = TopBar,BackgroundColor3 = Color3.new(1, 1, 1),AutoButtonColor = false,BackgroundTransparency = 1,Position = UDim2.new(0, 5, 0, 0),Size = UDim2.new(0, 57, 0, 18),Font = Enum.Font.SourceSansBold,Text =  "SimpleSpy",TextColor3 = Color3.new(1, 1, 1),TextSize = 14,TextXAlignment = Enum.TextXAlignment.Left})
+local Simple = Create("TextButton",{Parent = TopBar,BackgroundColor3 = Color3.new(1, 1, 1),AutoButtonColor = false,BackgroundTransparency = 1,Position = UDim2.new(0, 5, 0, 0),Size = UDim2.new(0, 57, 0, 18),Font = Enum.Font.SourceSansBold,Text =  "Lspy汉化",TextColor3 = Color3.new(1, 1, 1),TextSize = 14,TextXAlignment = Enum.TextXAlignment.Left})
 local CloseButton = Create("TextButton",{Parent = TopBar,BackgroundColor3 = Color3.new(0.145098, 0.141176, 0.14902),BorderSizePixel = 0,Position = UDim2.new(1, -19, 0, 0),Size = UDim2.new(0, 19, 0, 19),Font = Enum.Font.SourceSans,Text = "",TextColor3 = Color3.new(0, 0, 0),TextSize = 14})
 local ImageLabel = Create("ImageLabel",{Parent = CloseButton,BackgroundColor3 = Color3.new(1, 1, 1),BackgroundTransparency = 1,Position = UDim2.new(0, 5, 0, 5),Size = UDim2.new(0, 9, 0, 9),Image = "http://www.roblox.com/asset/?id=5597086202"})
 local MaximizeButton = Create("TextButton",{Parent = TopBar,BackgroundColor3 = Color3.new(0.145098, 0.141176, 0.14902),BorderSizePixel = 0,Position = UDim2.new(1, -38, 0, 0),Size = UDim2.new(0, 19, 0, 19),Font = Enum.Font.SourceSans,Text = "",TextColor3 = Color3.new(0, 0, 0),TextSize = 14})
@@ -2012,7 +2012,7 @@ end
 ]]
 -- Copies the contents of the codebox
 newButton(
-    "Copy Code",
+    "复制",
     function() return "Click to copy code" end,
     function()
         setclipboard(codebox:getString())
@@ -2022,7 +2022,7 @@ newButton(
 
 --- Copies the source script (that fired the remote)
 newButton(
-    "Copy Remote",
+    "远程复制",
     function() return "Click to copy the path of the remote" end,
     function()
         if selected and selected.Remote then
@@ -2033,7 +2033,7 @@ newButton(
 )
 
 -- Executes the contents of the codebox through loadstring
-newButton("Run Code",
+newButton("运行代码",
     function() return "Click to execute code" end,
     function()
         local Remote = selected and selected.Remote
@@ -2059,7 +2059,7 @@ newButton("Run Code",
 
 --- Gets the calling script (not super reliable but w/e)
 newButton(
-    "Get Script",
+    "获取脚本",
     function() return "Click to copy calling script to clipboard\nWARNING: Not super reliable, nil == could not find" end,
     function()
         if selected then
@@ -2073,7 +2073,7 @@ newButton(
 )
 
 --- Decompiles the script that fired the remote and puts it in the code box
-newButton("Function Info",function() return "Click to view calling function information" end,
+newButton("功能信息",function() return "Click to view calling function information" end,
 function()
     local func = selected and selected.Function
     if func then
@@ -2135,7 +2135,7 @@ end)
 
 --- Clears the Remote logs
 newButton(
-    "Clr Logs",
+    "删除所有",
     function() return "Click to clear logs" end,
     function()
         TextLabel.Text = "Clearing..."
@@ -2153,7 +2153,7 @@ newButton(
 
 --- Excludes the selected.Log Remote from the RemoteSpy
 newButton(
-    "Exclude (i)",
+    "排除1",
     function() return "Click to exclude this Remote.\nExcluding a remote makes SimpleSpy ignore it, but it will continue to be usable." end,
     function()
         if selected then
@@ -2165,7 +2165,7 @@ newButton(
 
 --- Excludes all Remotes that share the same name as the selected.Log remote from the RemoteSpy
 newButton(
-    "Exclude (n)",
+    "排除n",
     function() return "Click to exclude all remotes with this name.\nExcluding a remote makes SimpleSpy ignore it, but it will continue to be usable." end,
     function()
         if selected then
@@ -2176,7 +2176,7 @@ newButton(
 )
 
 --- clears blacklist
-newButton("Clr Blacklist",
+newButton("日志黑名单",
 function() return "Click to clear the blacklist.\nExcluding a remote makes SimpleSpy ignore it, but it will continue to be usable." end,
 function()
     blacklist = {}
@@ -2185,7 +2185,7 @@ end)
 
 --- Prevents the selected.Log Remote from firing the server (still logged)
 newButton(
-    "Block (i)",
+    "块",
     function() return "Click to stop this remote from firing.\nBlocking a remote won't remove it from SimpleSpy logs, but it will not continue to fire the server." end,
     function()
         if selected then
@@ -2196,7 +2196,7 @@ newButton(
 )
 
 --- Prevents all remotes from firing that share the same name as the selected.Log remote from the RemoteSpy (still logged)
-newButton("Block (n)",function()
+newButton("块n",function()
     return "Click to stop remotes with this name from firing.\nBlocking a remote won't remove it from SimpleSpy logs, but it will not continue to fire the server." end,
     function()
         if selected then
@@ -2208,7 +2208,7 @@ newButton("Block (n)",function()
 
 --- clears blacklist
 newButton(
-    "Clr Blocklist",
+    "阻止列表",
     function() return "Click to stop blocking remotes.\nBlocking a remote won't remove it from SimpleSpy logs, but it will not continue to fire the server." end,
     function()
         blocklist = {}
@@ -2217,7 +2217,7 @@ newButton(
 )
 
 --- Attempts to decompile the source script
-newButton("Decompile",
+newButton("得出源码",
     function()
         return "Decompile source script"
     end,function()
@@ -2267,7 +2267,7 @@ newButton("Decompile",
     )]]
 
 newButton(
-    "Disable Info",
+    "禁止信息",
     function() return string.format("[%s] Toggle function info (because it can cause lag in some games)", configs.funcEnabled and "ENABLED" or "DISABLED") end,
     function()
         configs.funcEnabled = not configs.funcEnabled
@@ -2276,7 +2276,7 @@ newButton(
 )
 
 newButton(
-    "Autoblock",
+    "自动拦截",
     function() return string.format("[%s] [BETA] Intelligently detects and excludes spammy remote calls from logs", configs.autoblock and "ENABLED" or "DISABLED") end,
     function()
         configs.autoblock = not configs.autoblock
@@ -2286,7 +2286,7 @@ newButton(
     end
 )
 
-newButton("Logcheckcaller",function()
+newButton("LogCheckCaller",function()
     return ("[%s] Log remotes fired by the client"):format(configs.logcheckcaller and "ENABLED" or "DISABLED")
 end,
 function()
@@ -2302,7 +2302,7 @@ function()
     TextLabel.Text = ("[BETA] [%s] Log RemoteFunction's return values"):format(configs.logreturnvalues and "ENABLED" or "DISABLED")
 end)]]
 
-newButton("Advanced Info",function()
+newButton("高级信息",function()
     return ("[%s] Display more remoteinfo"):format(configs.advancedinfo and "ENABLED" or "DISABLED")
 end,
 function()
@@ -2310,11 +2310,11 @@ function()
     TextLabel.Text = ("[%s] Display more remoteinfo"):format(configs.advancedinfo and "ENABLED" or "DISABLED")
 end)
 
-newButton("Join Discord",function()
+newButton("加入qq群",function()
     return "Joins The Simple Spy Discord"
 end,
 function()
-    setclipboard("https://discord.com/invite/AWS6ez9")
+    setclipboard("还没创呢🤓")
     TextLabel.Text = "Copied invite to your clipboard"
     if request then
         request({Url = 'http://127.0.0.1:6463/rpc?v=1',Method = 'POST',Headers = {['Content-Type'] = 'application/json', Origin = 'https://discord.com'},Body = http:JSONEncode({cmd = 'INVITE_BROWSER',nonce = http:GenerateGUID(false),args = {code = 'AWS6ez9'}})})
@@ -2358,7 +2358,7 @@ if table.find({
     QuickCapture.Position = UDim2.new(0.529, 0, 0, 0)
     QuickCapture.Size = UDim2.new(0, 32, 0, 33)
     QuickCapture.Font = Enum.Font.SourceSansBold
-    QuickCapture.Text = "Spy"
+    QuickCapture.Text = "Lspy"
     QuickCapture.TextColor3 = Background.Visible and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(252, 51, 51)
     QuickCapture.TextSize = 16
     QuickCapture.TextWrapped = true
